@@ -3,3 +3,10 @@ name: primeira pipeline
 on:
   push:
       branches:[main]
+jobs:
+    teste:
+        runs-on: ubuntu-latest
+
+        steps:
+          -name: baixar Codigo do repositorio
+          user: actions/checkout@v4

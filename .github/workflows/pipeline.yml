@@ -2,7 +2,7 @@ name: primeira pipeline
 
 on:
   push:
-    branches: [main]
+    branches: ["main"]
 
 jobs:
   teste:
@@ -23,9 +23,12 @@ jobs:
       - name: Executar testes
         run: pytest
 
-  deploy:
-    needs: teste
+  
+deploy:
+    name: Simular Deploy
+    needs: testes
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo "deploy realizado"
+      - name: Confirmar Deploy
+        run: echo "Testes passaram! Deploy realizado com sucesso."

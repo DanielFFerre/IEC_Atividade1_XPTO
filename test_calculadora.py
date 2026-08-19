@@ -13,7 +13,6 @@ def test_multiplicacao():
 
 def test_divisao():
     assert divisao(10, 2) == 5
-    
-    # Testa se o programa lida corretamente com divisão por zero
+
     with pytest.raises(ValueError):
         divisao(10, 0)

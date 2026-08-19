@@ -2,24 +2,30 @@ name: primeira pipeline
 
 on:
   push:
-      branches: [main]
-jobs:
-    teste:
-        runs-on: ubuntu-latest
+    branches: [main]
 
-        steps:
-          -name: baixar Codigo do repositorio
-          user: actions/checkout@v4
-          -name: configurar python
-          uses: actions/setup-python@v5
-          with: 
-            python-version: '3.12'
-          -name: Instalar dependencias
-          run: pip install pytest
-          -name: Executar testes
-          run: pytest
-deploy:
-  needs: test
-  runs-on: ubuntu-latest
-  steps: 
-    -run: echo "deploy realizado"
+jobs:
+  teste:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: baixar Codigo do repositorio
+        uses: actions/checkout@v4
+
+      - name: configurar python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependencias
+        run: pip install pytest
+
+      - name: Executar testes
+        run: pytest
+
+  deploy:
+    needs: teste
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "deploy realizado"

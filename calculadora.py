@@ -12,7 +12,6 @@ def divisao(a,b):
         raise ValueError("Divisão por zero não é permitida")
     return a / b
 
-# A mágica acontece aqui:
 if __name__ == "__main__":
     print("soma: + ")
     print("subtracao: - ")

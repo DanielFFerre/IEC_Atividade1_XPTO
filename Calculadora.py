@@ -1,4 +1,15 @@
 ##CALCULADORA
+def soma(a,b):
+    return a+ b
+def subtracao(a,b):
+    return a - b
+def multiplicacao(a,b):
+    return a*b
+def divisao(a,b):
+    if b == 0:
+        raise ValueError("Divisão por zero não é permitida")
+    return a / b
+
 print("soma: + ")
 print("subtracao: - ")
 print("multiplicacao: * ")
@@ -9,12 +20,12 @@ a,operacao,b = input("digite a operacao que deseja fazer: ").split()
 a = float(a)
 b = float(b)
 if operacao == "+":
-    print(a+b)
+    print(soma(a,b))
 elif operacao == "-":
-    print(a-b)
+    print(subtracao(a,b))
 elif operacao == "*":
-    print(a*b)
+    print(multiplicacao(a,b))
 elif operacao == "/":
-    print(a/b)
+    print(divisao(a,b))
 else:
     print("operacao invalida")

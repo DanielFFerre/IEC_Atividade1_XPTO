@@ -5,30 +5,71 @@ on:
     branches: [main]
 
 jobs:
-  teste:
+  teste_soma:
+    -name: Teste de Soma
     runs-on: ubuntu-latest
-
     steps:
-      - name: baixar Codigo do repositorio
-        uses: actions/checkout@v4
+-name: baixar código repositorio
+uses: actions/checkout@v4
+-name: configurar python
+uses: actions/setup-python@v5
+with:
+python-version: "3.12"
+-name: instalar dependências
+run: pip install pytest
+-name: Executar teste de soma
+run: pytest test_calculadora.py::test_soma
 
-      - name: configurar python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
+teste_subtracao:
+    -name: Teste de subtracao
+    runs-on: ubuntu-latest
+    steps:
+-name: baixar código repositorio
+uses: actions/checkout@v4
+-name: configurar python
+uses: actions/setup-python@v5
+with:
+python-version: "3.12"
+-name: instalar dependências
+run: pip install pytest
+-name: Executar teste de subtracao
+run: pytest test_calculadora.py::test_subtracao
 
-      - name: Instalar dependencias
-        run: pip install pytest
+teste_soma:
+    -name: Teste de multiplicacao
+    runs-on: ubuntu-latest
+    steps:
+-name: baixar código repositorio
+uses: actions/checkout@v4
+-name: configurar python
+uses: actions/setup-python@v5
+with:
+python-version: "3.12"
+-name: instalar dependências
+run: pip install pytest
+-name: Executar teste de multiplicacao
+run: pytest test_calculadora.py::test_multiplicacao
 
-      - name: Executar testes
-        run: pytest
+teste_soma:
+    -name: Teste de divisao
+    runs-on: ubuntu-latest
+    steps:
+-name: baixar código repositorio
+uses: actions/checkout@v4
+-name: configurar python
+uses: actions/setup-python@v5
+with:
+python-version: "3.12"
+-name: instalar dependências
+run: pip install pytest
+-name: Executar teste de divisao
+run: pytest test_calculadora.py::test_divisao
 
   
 deploy:
     name: Simular Deploy
-    needs: testes
+    needs: [teste_soma, teste_subtracao, teste_multiplicacao, teste_divisao] 
     runs-on: ubuntu-latest
-
     steps:
       - name: Confirmar Deploy
-        run: echo "Testes passaram! Deploy realizado com sucesso."
+        run: echo "Todos os testes individuais passaram! Deploy realizado com sucesso."

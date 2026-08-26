@@ -18,4 +18,48 @@ jobs:
           java-version: '17'
     - name: executar teste de soma
       run: mvn test -Dtest=*test_calculadora#testSoma
+
+  teste_subtracao:
+  name: teste subtracao
+  runs-on: ubunto-latest
+  steps:
+    - name: instalar repositorio
+      uses: action/checkout@v4
+    - name: configurar java
+      uses: action/setup-java@v4
+      with:
+          distribution: 'temurin'
+          java-version: '17'
+    - name: executar teste de subtracao
+      run: mvn test -Dtest=*test_calculadora#testSubtracao
+
+  teste_multiplicacao:
+  name: teste multiplicacao
+  runs-on: ubunto-latest
+  steps:
+    - name: instalar repositorio
+      uses: action/checkout@v4
+    - name: configurar java
+      uses: action/setup-java@v4
+      with:
+          distribution: 'temurin'
+          java-version: '17'
+    - name: executar teste de multiplicacao
+      run: mvn test -Dtest=*test_calculadora#testMultiplicacao
+
+  teste_divisao:
+  name: teste divisao
+  runs-on: ubunto-latest
+  steps:
+    - name: instalar repositorio
+      uses: action/checkout@v4
+    - name: configurar java
+      uses: action/setup-java@v4
+      with:
+          distribution: 'temurin'
+          java-version: '17'
+    - name: executar teste de divisao
+      run: mvn test -Dtest=*test_calculadora#testDivisao
+
+
   

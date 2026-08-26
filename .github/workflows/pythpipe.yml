@@ -4,54 +4,6 @@ on:
   push:
     branches: [main]
 
-jobs:
-
-  linter:
-    name: Análise de Código (Linter)
-    runs-on: ubuntu-latest
-    steps:
-      - name: baixar código repositorio
-        uses: actions/checkout@v4
-      - name: configurar python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: instalar linter
-        run: pip install flake8
-      - name: Executar Linter
-        run: flake8 calculadora.py test_calculadora.py --count --show-source --statistics
-        
-  cobertura:
-    name: Cobertura de Código
-    runs-on: ubuntu-latest
-    steps:
-      - name: baixar código repositorio
-        uses: actions/checkout@v4
-      - name: configurar python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: instalar dependências
-        run: pip install pytest pytest-cov
-      - name: Executar Análise de Cobertura
-        run: pytest --cov=calculadora --cov-report=term-missing --cov-fail-under=80 test_calculadora.py
-
-
-  seguranca:
-    name: Análise de Segurança
-    runs-on: ubuntu-latest
-    steps:
-      - name: baixar código repositorio
-        uses: actions/checkout@v4
-      - name: configurar python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: instalar bandit
-        run: pip install bandit
-      - name: Executar Análise de Segurança
-        run: bandit -r calculadora.py
-
   teste_soma:
     name: Teste de Soma
     runs-on: ubuntu-latest
@@ -111,6 +63,55 @@ jobs:
         run: pip install pytest
       - name: Executar teste de divisao
         run: pytest test_calculadora.py::test_divisao
+
+        jobs:
+
+  linter:
+    name: Análise de Código (Linter)
+    runs-on: ubuntu-latest
+    steps:
+      - name: baixar código repositorio
+        uses: actions/checkout@v4
+      - name: configurar python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: instalar linter
+        run: pip install flake8
+      - name: Executar Linter
+        run: flake8 calculadora.py test_calculadora.py --count --show-source --statistics
+        
+  cobertura:
+    name: Cobertura de Código
+    runs-on: ubuntu-latest
+    steps:
+      - name: baixar código repositorio
+        uses: actions/checkout@v4
+      - name: configurar python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: instalar dependências
+        run: pip install pytest pytest-cov
+      - name: Executar Análise de Cobertura
+        run: pytest --cov=calculadora --cov-report=term-missing --cov-fail-under=80 test_calculadora.py
+
+
+  seguranca:
+    name: Análise de Segurança
+    runs-on: ubuntu-latest
+    steps:
+      - name: baixar código repositorio
+        uses: actions/checkout@v4
+      - name: configurar python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: instalar bandit
+        run: pip install bandit
+      - name: Executar Análise de Segurança
+        run: bandit -r calculadora.py
+
 
   deploy:
     name: Simular Deploy

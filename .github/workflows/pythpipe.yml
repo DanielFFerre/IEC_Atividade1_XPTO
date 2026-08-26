@@ -21,6 +21,21 @@ jobs:
       - name: Executar Linter
         run: flake8 calculadora.py test_calculadora.py --count --show-source --statistics
 
+  seguranca:
+    name: Análise de Segurança
+    runs-on: ubuntu-latest
+    steps:
+      - name: baixar código repositorio
+        uses: actions/checkout@v4
+      - name: configurar python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: instalar bandit
+        run: pip install bandit
+      - name: Executar Análise de Segurança
+        run: bandit -r calculadora.py
+
   teste_soma:
     name: Teste de Soma
     runs-on: ubuntu-latest

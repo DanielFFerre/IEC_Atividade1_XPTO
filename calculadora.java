@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class calculadora { 
+public class Calculadora {
 
     public int soma(int a, int b) {
         return a + b;
@@ -25,7 +25,6 @@ public class calculadora {
 
         System.out.print("Primeiro numero: ");
         int a = scanner.nextInt();
-        
         scanner.nextLine(); 
 
         System.out.print("Digite sua operacao (+, -, *, /): ");

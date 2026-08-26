@@ -17,7 +17,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: executar teste de soma
-        run: mvn test -Dtest=*test_calculadora#testSoma
+        run: mvn test -Dtest=*CalculadoraTest#testSoma
 
   teste_subtracao:
     name: teste subtracao
@@ -31,7 +31,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: executar teste de subtracao
-        run: mvn test -Dtest=*test_calculadora#testSubtracao
+        run: mvn test -Dtest=*CalculadoraTest#testSubtracao
 
   teste_multiplicacao:
     name: teste multiplicacao
@@ -45,7 +45,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: executar teste de multiplicacao
-        run: mvn test -Dtest=*test_calculadora#testMultiplicacao
+        run: mvn test -Dtest=*CalculadoraTest#testMultiplicacao
 
   teste_divisao:
     name: teste divisao
@@ -59,7 +59,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: executar teste de divisao
-        run: mvn test -Dtest=*test_calculadora#testDivisao
+        run: mvn test -Dtest=*CalculadoraTest#testDivisao
 
   deploy:
     name: Simular Deploy

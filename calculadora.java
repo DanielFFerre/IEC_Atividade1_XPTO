@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class calculadora {
+public class Calculadora { 
 
     public int soma(int a, int b) {
         return a + b;
@@ -18,10 +18,10 @@ public class calculadora {
         }
         return a / b;
     }
+    
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Calculadora calc = new Calculadora();     
-
+        Calculadora calc = new Calculadora();
 
         System.out.print("Primeiro numero: ");
         int a = scanner.nextInt();

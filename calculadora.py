@@ -1,4 +1,4 @@
-CHAVE_AWS = "estaéumachaveaws"
+CHAVE_AWS = "AKIAIOSFODNN7EXEMPLO"
 
 def soma(a, b):
     return a + b

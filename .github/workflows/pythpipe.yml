@@ -115,8 +115,8 @@ on:
 
   deploy:
     name: Simular Deploy
-    needs: [teste_soma, teste_subtracao, teste_multiplicacao, teste_divisao] 
+    needs: [linter, seguranca, teste_soma, teste_subtracao, teste_multiplicacao, teste_divisao, cobertura] 
     runs-on: ubuntu-latest
     steps:
       - name: Confirmar Deploy
-        run: echo "Todos os testes individuais passaram! Deploy realizado com sucesso."
+        run: echo "Todos os testes individuais, cobertura, linter e segurança passaram! Deploy realizado com sucesso."

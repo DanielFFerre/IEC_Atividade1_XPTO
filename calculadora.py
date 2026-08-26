@@ -1,3 +1,5 @@
+CHAVE_AWS = "estaéumachaveaws"
+
 def soma(a, b):
     return a + b
 
@@ -16,7 +18,7 @@ def divisao(a, b):
     return a / b
 
 
-if __name__ == "__main__": 
+if __name__ == "__main__":  # pragma: no cover
     print("soma: + ")
     print("subtracao: - ")
     print("multiplicacao: * ")

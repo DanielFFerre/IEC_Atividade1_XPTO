@@ -5,6 +5,22 @@ on:
     branches: [main]
 
 jobs:
+
+  linter:
+    name: Análise de Código (Linter)
+    runs-on: ubuntu-latest
+    steps:
+      - name: baixar código repositorio
+        uses: actions/checkout@v4
+      - name: configurar python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: instalar linter
+        run: pip install flake8
+      - name: Executar Linter
+        run: flake8 calculadora.py test_calculadora.py --count --show-source --statistics
+
   teste_soma:
     name: Teste de Soma
     runs-on: ubuntu-latest

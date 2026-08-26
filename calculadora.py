@@ -1,9 +1,3 @@
-def conectar_banco():
-    api_key = "AKIAIOSFODNN7EXEMPLO"
-    password = "123451"
-    token = "ghp_16C7e42F292c6912E7710c838347Ae0001"
-    return api_key, password, token
-
 def soma(a, b):
     return a + b
 

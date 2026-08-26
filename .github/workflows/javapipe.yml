@@ -6,66 +6,65 @@ on:
 
 jobs:
   teste_soma:
-  name: teste soma
-  runs-on: ubunto-latest
-  steps:
-    - name: instalar repositorio
-      uses: action/checkout@v4
-    - name: configurar java
-      uses: action/setup-java@v4
-      with:
+    name: teste soma
+    runs-on: ubuntu-latest
+    steps:
+      - name: instalar repositorio
+        uses: actions/checkout@v4
+      - name: configurar java
+        uses: actions/setup-java@v4
+        with:
           distribution: 'temurin'
           java-version: '17'
-    - name: executar teste de soma
-      run: mvn test -Dtest=*test_calculadora#testSoma
+      - name: executar teste de soma
+        run: mvn test -Dtest=*test_calculadora#testSoma
 
   teste_subtracao:
-  name: teste subtracao
-  runs-on: ubunto-latest
-  steps:
-    - name: instalar repositorio
-      uses: action/checkout@v4
-    - name: configurar java
-      uses: action/setup-java@v4
-      with:
+    name: teste subtracao
+    runs-on: ubuntu-latest
+    steps:
+      - name: instalar repositorio
+        uses: actions/checkout@v4
+      - name: configurar java
+        uses: actions/setup-java@v4
+        with:
           distribution: 'temurin'
           java-version: '17'
-    - name: executar teste de subtracao
-      run: mvn test -Dtest=*test_calculadora#testSubtracao
+      - name: executar teste de subtracao
+        run: mvn test -Dtest=*test_calculadora#testSubtracao
 
   teste_multiplicacao:
-  name: teste multiplicacao
-  runs-on: ubunto-latest
-  steps:
-    - name: instalar repositorio
-      uses: action/checkout@v4
-    - name: configurar java
-      uses: action/setup-java@v4
-      with:
+    name: teste multiplicacao
+    runs-on: ubuntu-latest
+    steps:
+      - name: instalar repositorio
+        uses: actions/checkout@v4
+      - name: configurar java
+        uses: actions/setup-java@v4
+        with:
           distribution: 'temurin'
           java-version: '17'
-    - name: executar teste de multiplicacao
-      run: mvn test -Dtest=*test_calculadora#testMultiplicacao
+      - name: executar teste de multiplicacao
+        run: mvn test -Dtest=*test_calculadora#testMultiplicacao
 
   teste_divisao:
-  name: teste divisao
-  runs-on: ubunto-latest
-  steps:
-    - name: instalar repositorio
-      uses: action/checkout@v4
-    - name: configurar java
-      uses: action/setup-java@v4
-      with:
+    name: teste divisao
+    runs-on: ubuntu-latest
+    steps:
+      - name: instalar repositorio
+        uses: actions/checkout@v4
+      - name: configurar java
+        uses: actions/setup-java@v4
+        with:
           distribution: 'temurin'
           java-version: '17'
-    - name: executar teste de divisao
-      run: mvn test -Dtest=*test_calculadora#testDivisao
+      - name: executar teste de divisao
+        run: mvn test -Dtest=*test_calculadora#testDivisao
 
-deploy:
+  deploy:
     name: Simular Deploy
     needs: [teste_soma, teste_subtracao, teste_multiplicacao, teste_divisao] 
     runs-on: ubuntu-latest
     steps:
       - name: Confirmar Deploy
         run: echo "Todos os testes individuais passaram! Deploy realizado com sucesso."
-  

@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Calculadora { 
+public class calculadora { 
 
     public int soma(int a, int b) {
         return a + b;

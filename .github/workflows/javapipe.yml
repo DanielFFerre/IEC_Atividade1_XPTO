@@ -63,7 +63,7 @@ jobs:
 
 deploy:
     name: Simular Deploy
-    needs: [teste_soma, teste_subtracao, teste_multiplicacao, teste_divisao] 
+    needs: [testsoma, testsubtracao, testmultiplicacao, testdivisao] 
     runs-on: ubuntu-latest
     steps:
       - name: Confirmar Deploy

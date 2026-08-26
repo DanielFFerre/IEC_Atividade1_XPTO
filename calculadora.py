@@ -16,7 +16,7 @@ def divisao(a, b):
     return a / b
 
 
-if __name__ == "__main__":  # pragma: no cover
+if __name__ == "__main__": 
     print("soma: + ")
     print("subtracao: - ")
     print("multiplicacao: * ")

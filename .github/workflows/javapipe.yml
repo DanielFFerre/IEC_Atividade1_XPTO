@@ -1,0 +1,21 @@
+name: pipeline do java
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  teste_soma:
+  name: teste soma
+  runs-on: ubunto-latest
+  steps:
+    - name: instalar repositorio
+      uses: action/checkout@v4
+    - name: configurar java
+      uses: action/setup-java@v4
+      with:
+          distribution: 'temurin'
+          java-version: '17'
+    - name: executar teste de soma
+      run: mvn test -Dtest=*test_calculadora#testSoma
+  

@@ -48,16 +48,12 @@ jobs:
       - name: configurar python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with: 
-         python-version: ${{ matrix.python-version }}
-         cache: 'pip'
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
       - name: instalar dependências
         run: pip install -r requirements.txt
       - name: Executar todos os testes unitários
         run: pytest test_calculadora.py
-      - name: Análise com SonarQube
-        uses: SonarSource/sonarqube-scan-action@v7
-        env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   teste_soma:
     name: Teste de Soma
@@ -133,6 +129,10 @@ jobs:
         run: pip install pytest pytest-cov
       - name: Executar Análise de Cobertura
         run: pytest --cov=calculadora --cov-report=xml --cov-report=term-missing --cov-fail-under=80 test_calculadora.py
+      - name: Análise com SonarQube
+        uses: SonarSource/sonarqube-scan-action@v7
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   deploy:
     name: Simular Deploy

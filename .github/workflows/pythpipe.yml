@@ -5,6 +5,24 @@ on:
     branches: [main]
 
 jobs:
+  qualidade:
+   strategy:
+    matrix:
+     os: [ubunto-latest, windows-latest, macos-latest]
+    runs-on: ${{matrix.os}}
+    steps:
+    - name: baixar código repositorio
+      uses: actions/checkout@v4
+    - name: configurar python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: instalar dependências
+      run: pip install pytest
+    - name: Executar todos os testes unitários
+      run: pytest test_calculadora.py
+
+
   linter:
     name: Análise de Código (Linter)
     runs-on: ubuntu-latest

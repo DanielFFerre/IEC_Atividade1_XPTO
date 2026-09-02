@@ -1,28 +1,10 @@
-name: primeira pipeline
+name: pipeline do python
 
 on:
   push:
     branches: [main]
 
 jobs:
-  qualidade:
-   strategy:
-    matrix:
-     os: [ubunto-latest, windows-latest, macos-latest]
-    runs-on: ${{matrix.os}}
-    steps:
-    - name: baixar código repositorio
-      uses: actions/checkout@v4
-    - name: configurar python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: instalar dependências
-      run: pip install pytest
-    - name: Executar todos os testes unitários
-      run: pytest test_calculadora.py
-
-
   linter:
     name: Análise de Código (Linter)
     runs-on: ubuntu-latest
@@ -52,6 +34,25 @@ jobs:
         run: pip install bandit
       - name: Executar Análise de Segurança
         run: bandit -r calculadora.py
+
+testes:
+    name: Testes Unitários (Matrix)
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04, ubuntu-22.04]
+        python-version: ["3.11", "3.12"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: baixar código repositorio
+        uses: actions/checkout@v4
+      - name: configurar python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: instalar dependências
+        run: pip install pytest
+      - name: Executar todos os testes unitários
+        run: pytest test_calculadora.py
 
   teste_soma:
     name: Teste de Soma

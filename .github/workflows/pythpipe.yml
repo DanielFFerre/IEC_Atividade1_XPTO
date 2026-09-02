@@ -51,7 +51,7 @@ jobs:
          python-version: ${{ matrix.python-version }}
          cache: 'pip'
       - name: instalar dependências
-        run: pip install pytest
+        run: pip install -r requirements.txt
       - name: Executar todos os testes unitários
         run: pytest test_calculadora.py
 

@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-linter:
+  linter:
     name: Análise de Código (Linter)
     runs-on: ubuntu-latest
     steps:
@@ -20,7 +20,7 @@ linter:
       - name: Executar Linter
         run: flake8 calculadora.py test_calculadora.py --count --show-source --statistics
 
-seguranca:
+  seguranca:
     name: Análise de Segurança
     runs-on: ubuntu-latest
     steps:
@@ -35,7 +35,7 @@ seguranca:
       - name: Executar Análise de Segurança
         run: bandit -r calculadora.py
 
-testes:
+  testes:
     name: Testes Unitários (Matrix)
     strategy:
       matrix:
@@ -54,7 +54,7 @@ testes:
       - name: Executar todos os testes unitários
         run: pytest test_calculadora.py
 
-teste_soma:
+  teste_soma:
     name: Teste de Soma
     runs-on: ubuntu-latest
     steps:
@@ -69,7 +69,7 @@ teste_soma:
       - name: Executar teste de soma
         run: pytest test_calculadora.py::test_soma
 
-teste_subtracao:
+  teste_subtracao:
     name: Teste de subtracao
     runs-on: ubuntu-latest
     steps:
@@ -84,7 +84,7 @@ teste_subtracao:
       - name: Executar teste de subtracao
         run: pytest test_calculadora.py::test_subtracao
 
-teste_multiplicacao:
+  teste_multiplicacao:
     name: Teste de multiplicacao
     runs-on: ubuntu-latest
     steps:
@@ -99,7 +99,7 @@ teste_multiplicacao:
       - name: Executar teste de multiplicacao
         run: pytest test_calculadora.py::test_multiplicacao
 
-teste_divisao:
+  teste_divisao:
     name: Teste de divisao
     runs-on: ubuntu-latest
     steps:
@@ -114,7 +114,7 @@ teste_divisao:
       - name: Executar teste de divisao
         run: pytest test_calculadora.py::test_divisao
 
-cobertura:
+  cobertura:
     name: Cobertura de Código
     runs-on: ubuntu-latest
     steps:
@@ -129,10 +129,10 @@ cobertura:
       - name: Executar Análise de Cobertura
         run: pytest --cov=calculadora --cov-report=term-missing --cov-fail-under=80 test_calculadora.py
 
-deploy:
+  deploy:
     name: Simular Deploy
-    needs: [linter, seguranca, testes, cobertura] 
+    needs: [linter, seguranca, testes, teste_soma, teste_subtracao, teste_multiplicacao, teste_divisao, cobertura] 
     runs-on: ubuntu-latest
     steps:
       - name: Confirmar Deploy
-        run: echo "Todos os testes (na matriz), cobertura, linter e segurança passaram! Deploy realizado com sucesso."
+        run: echo "Todos os testes individuais, a matriz, cobertura, linter e segurança passaram! Deploy realizado com sucesso."

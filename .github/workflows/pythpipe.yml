@@ -54,6 +54,10 @@ jobs:
         run: pip install -r requirements.txt
       - name: Executar todos os testes unitários
         run: pytest test_calculadora.py
+      - name: Análise com SonarQube
+        uses: SonarSource/sonarqube-scan-action@v7
+        env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   teste_soma:
     name: Teste de Soma
